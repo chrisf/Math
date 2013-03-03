@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{699221AC-4872-4AD8-9CC8-3272360625DB}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		Math.vsmdi = Math.vsmdi
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math", "Math\Math.csproj", "{077201B2-8D22-469A-94E8-9A1221BE38B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.Tests", "Math.Tests\Math.Tests.csproj", "{6082D609-5DDC-4D51-B343-F53D0145F8F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathConsole", "MathConsole\MathConsole.csproj", "{66055A4E-CD63-4954-8764-B07D0647E8FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{077201B2-8D22-469A-94E8-9A1221BE38B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{077201B2-8D22-469A-94E8-9A1221BE38B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{077201B2-8D22-469A-94E8-9A1221BE38B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{077201B2-8D22-469A-94E8-9A1221BE38B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6082D609-5DDC-4D51-B343-F53D0145F8F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6082D609-5DDC-4D51-B343-F53D0145F8F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6082D609-5DDC-4D51-B343-F53D0145F8F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6082D609-5DDC-4D51-B343-F53D0145F8F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66055A4E-CD63-4954-8764-B07D0647E8FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66055A4E-CD63-4954-8764-B07D0647E8FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66055A4E-CD63-4954-8764-B07D0647E8FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66055A4E-CD63-4954-8764-B07D0647E8FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
