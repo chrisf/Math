@@ -54,6 +54,8 @@ namespace Math
             if (this.ignoreWhiteSpace)
                 this.data = this.data.Replace(" ", "");
 
+            this.data = this.data.Replace('[', '(').Replace(']', ')');
+
 			Reset();
 		}
 
@@ -67,6 +69,8 @@ namespace Math
 
             if (this.ignoreWhiteSpace)
                 this.data = this.data.Replace(" ", "");
+
+            this.data = this.data.Replace('[', '(').Replace(']', ')');
 
 			Reset();
 		}
@@ -306,12 +310,15 @@ namespace Math
                     if (prevToken == null || prevToken.Kind != TokenKind.Number && char.IsDigit(ch) || ch == EOF)
                     {
                         // this must be a negative sign, not subtraction
-                        if(ch == EOF)
+                        if (ch == EOF)
                             break;
                         Consume();
                     }
                     else
                     {
+                        if (ch == ')')
+                            break;
+
                         // subtraction sign
                         //pos--;
                         IsOperator(cz);
@@ -337,7 +344,7 @@ namespace Math
                         IsOperator(data[pos]);
                         return ReadOperator();
                     }
-                }
+                }*/
 				else if (ch == '.' && !hadDot)
 				{
 					hadDot = true;
@@ -348,7 +355,7 @@ namespace Math
                     }
 
 					Consume();
-				}*/
+				}
                 else
                     break;
 			}

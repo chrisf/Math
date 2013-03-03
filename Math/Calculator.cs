@@ -9,37 +9,46 @@ namespace Math
 {
     public class Calculator
     {
-        Operator[] operators = 
+        Operator[] operators;
+        Function[] functions;
+
+        Stack<Token> ops;
+        Queue output;
+        StringTokenizer tokenizer;
+
+        public Calculator()
         {
-            new Operator('^', 4, Operator.Associativity.Right, (args) => 
+            operators = new Operator[]
+            {
+                new Operator('^', 4, Operator.Associativity.Right, (args) => 
                 {
                     return System.Math.Pow(args[0], args[1]);
                 }),
-            new Operator('*', 3, Operator.Associativity.Left, (args) =>
+                new Operator('*', 3, Operator.Associativity.Left, (args) =>
                 {
                     return args[0] * args[1];
                 }),
-            new Operator('/', 3, Operator.Associativity.Left, (args) =>
+                new Operator('/', 3, Operator.Associativity.Left, (args) =>
                 {
                     return args[0] / args[1];
                 }),
-            new Operator('+', 2, Operator.Associativity.Left, (args) =>
+                new Operator('+', 2, Operator.Associativity.Left, (args) =>
                 {
                     return args[0] + args[1];
                 }),
-            new Operator('-', 2, Operator.Associativity.Left, (args) =>
+                new Operator('-', 2, Operator.Associativity.Left, (args) =>
                 {
                     return args[0] - args[1];
                 })
-        };
+            };
 
-        Function[] functions =
-        {
-            new Function("abs", 1, (args) =>
+            functions = new Function[]
+            {
+                new Function("abs", 1, (args) =>
                 {
                     return System.Math.Abs(args[0]);
                 }),
-            new Function("pi", 0, (args) =>
+                new Function("pi", 0, (args) =>
                 {
                     return System.Math.PI;
                 }),
@@ -54,6 +63,18 @@ namespace Math
                 new Function("tan", 1, (args) =>
                 {
                     return System.Math.Tan(args[0]);
+                }),
+                new Function("sec", 1, (args) =>
+                {
+                    return 1 / System.Math.Cos(args[0]);
+                }),
+                new Function("csc", 1, (args) =>
+                {
+                    return 1 / System.Math.Sin(args[0]);
+                }),
+                new Function("cot", 1, (args) =>
+                {
+                    return 1 / System.Math.Tan(args[0]);
                 }),
                 new Function("sqrt", 1, (args) =>
                 {
@@ -78,12 +99,27 @@ namespace Math
                 new Function("round", 1, (args) =>
                 {
                     return System.Math.Round(args[0]);
-                })
-        };
+                })/*,
+                new Function("june", 0, (args) =>
+                {
+                    return 80;
+                }),
+                new Function("renzo", 0, (args) =>
+                {
+                    return 9;
+                })*/
+            };
+        }
 
-        Stack<Token> ops;
-        Queue output;
-        StringTokenizer tokenizer;
+        private double DegreeToRadian(double angle)
+        {
+            return System.Math.PI * angle / 180.0;
+        }
+
+        private double RadianToDegree(double angle)
+        {
+            return angle * (180.0 / System.Math.PI);
+        }
 
         // async solve?
         public double Solve(string expression)
