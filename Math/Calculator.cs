@@ -9,8 +9,8 @@ namespace Math
 {
     public class Calculator
     {
-        Operator[] operators;
-        Function[] functions;
+        public Operator[] operators;
+        public Function[] functions;
 
         Stack<Token> ops;
         Queue output;

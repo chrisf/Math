@@ -55,7 +55,6 @@ namespace Math
                 if (e.KeyChar == '=')
                 {
                     e.Handled = true;
-                    Calculator calc = new Calculator();
                     double result = calc.Solve(GetExpression());
 
                     richTextBox1.AppendText("= "+result.ToString());
@@ -72,21 +71,80 @@ namespace Math
         
         string GetExpression(string str)
         {
-            string expression = str;
-
             if (str.Contains("="))
             {
-                expression = str.Substring(str.LastIndexOf('=') + 1);
+                return str.Substring(str.LastIndexOf('=') + 1);
             }
 
-            return expression;
+            return str;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            label1.Text = "";
             textBox1.Select();
             textBox1.Focus();
             textBox1.SelectAll();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string str;
+            string nl = Environment.NewLine;
+            str = "Supported operators: " + nl;
+            for(int i = 0; i < calc.operators.Length; i++)
+            {
+                str += calc.operators[i].symbol;
+
+                if (i % 2 == 1 || i == calc.operators.Length - 1)
+                    str += nl;
+                else
+                    str += "\t";
+            }
+            str += "Supported functions:" + nl;
+            for (int i = 0; i < calc.functions.Length; i++)
+            {
+                str += calc.functions[i].funcName + "(";
+                for (int j = 0; j < calc.functions[i].numArgs; j++)
+                {
+                    switch (j)
+                    {
+                        case 0:
+                            str += "a";
+                            break;
+                        case 1:
+                            str += "b";
+                            break;
+                        case 2:
+                            str += "c";
+                            break;
+                        case 3:
+                            str += "d";
+                            break;
+                        case 4:
+                            str += "e";
+                            break;
+                        case 5:
+                            str += "f";
+                            break;
+                        default:
+                            str += "n";
+                            break;
+                    }
+
+                    if (j < calc.functions[i].numArgs - 1)
+                        str += ", ";
+                }
+
+                str += ")";
+
+                if (i % 2 == 1 || i == calc.operators.Length - 1)
+                    str += nl;
+                else
+                    str += "\t";
+
+            }
+            MessageBox.Show(str);
         }
     }    
 }

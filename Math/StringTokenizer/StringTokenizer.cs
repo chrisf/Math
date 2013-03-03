@@ -307,11 +307,11 @@ namespace Math
                 }
                 else if (cz == '-')
                 {
-                    if (prevToken == null || prevToken.Kind != TokenKind.Number && char.IsDigit(ch) || ch == EOF)
+                    if (prevToken == null || prevToken.Kind != TokenKind.Number || ch == EOF)
                     {
                         // this must be a negative sign, not subtraction
-                        if (ch == EOF)
-                            break;
+                        if (ch == EOF || !char.IsDigit(ch))
+                            break;;
                         Consume();
                     }
                     else
