@@ -219,13 +219,13 @@ namespace Math
 
 				default:
 				{
-					
-					if (IsSymbol(ch))
-					{
-						StartRead();
-						Consume();
-						return CreateToken(TokenKind.Symbol);
-					}
+
+                    if (IsSymbol(ch))
+                    {
+                        StartRead();
+                        Consume();
+                        return CreateToken(TokenKind.Symbol);
+                    }
                     else if (IsOperator(ch))
                     {
                         StartRead();
@@ -238,8 +238,10 @@ namespace Math
                         //Consume();
                         return ReadFunction();
                     }
-                    else if (Char.IsLetter(ch) || ch == '_')
-						return ReadWord();
+                    else if (char.IsLetter(ch))
+                        return ReadVariable();
+                    /*else if (Char.IsLetter(ch) || ch == '_')
+						return ReadWord();*/
                     else
                     {
                         StartRead();
@@ -375,14 +377,28 @@ namespace Math
 			while (true)
 			{
 				char ch = LA(0);
-				if (Char.IsLetter(ch) || ch == '_')
-					Consume();
-				else
-					break;
+                if (Char.IsLetter(ch) || ch == '_')
+                {
+                    Consume();
+                }
+                else
+                    break;
 			}
 
 			return CreateToken(TokenKind.Word);
 		}
+
+        /// <summary>
+        /// reads word. Variable contains any alpha character
+        /// </summary>
+        protected Token ReadVariable()
+        {
+            StartRead();
+
+            Consume(); // the variable
+
+            return CreateToken(TokenKind.Variable);
+        }
 
 		/// <summary>
 		/// reads all characters until next " is found.

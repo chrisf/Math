@@ -17,6 +17,7 @@ namespace Math
 	{
 		Unknown,
 		Word,
+        Variable,
 		Number,
 		QuotedString,
 		WhiteSpace,

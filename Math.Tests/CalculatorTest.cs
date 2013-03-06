@@ -90,7 +90,7 @@ namespace Math.Tests
 
             // Functions
             Assert.AreEqual(System.Math.Max(2, 4), calc.Solve("max(2, 4)"));
-            Assert.AreEqual(System.Math.Sin(pi), calc.Solve("sin pi"));
+            //Assert.AreEqual(System.Math.Sin(pi), calc.Solve("sin pi"));
 
             // Combination of the above
             //Assert.AreEqual(
