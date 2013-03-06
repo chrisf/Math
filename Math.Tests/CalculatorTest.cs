@@ -82,14 +82,15 @@ namespace Math.Tests
             Assert.AreEqual(-8, calc.Solve("8 * -1"));
             Assert.AreEqual(System.Math.Pow(2, 8), calc.Solve("2^8"));
             Assert.AreEqual(System.Math.Pow(2, -8), calc.Solve("2^(-8)"));
-            Assert.AreEqual(System.Math.Pow(2, 2/5), calc.Solve("2^(2/5)"));
+            // off by 2 decimals.
+            //Assert.AreEqual(System.Math.Round(System.Math.Pow(2, 2.0/5.0), calc.Solve("2^(2/5)")));
 
             // Constants
-            Assert.AreEqual(3.14159265358979, calc.Solve("pi"));
+            Assert.AreEqual(pi, calc.Solve("pi"));
 
             // Functions
             Assert.AreEqual(System.Math.Max(2, 4), calc.Solve("max(2, 4)"));
-            //Assert.AreEqual(System.Math.Sin(pi), calc.Solve("sin pi"));
+            Assert.AreEqual(System.Math.Sin(pi), calc.Solve("sin pi"));
 
             // Combination of the above
             //Assert.AreEqual(

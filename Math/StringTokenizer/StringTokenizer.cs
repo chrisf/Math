@@ -305,6 +305,17 @@ namespace Math
                         break;
                     Consume();
                 }
+                else if (ch == '.' && !hadDot)
+                {
+                    hadDot = true;
+
+                    if (!char.IsDigit(cz))
+                    {
+                        data.Insert(pos, "0");
+                    }
+
+                    Consume();
+                }
                 else if (cz == '-')
                 {
                     if (prevToken == null || prevToken.Kind != TokenKind.Number || ch == EOF)
@@ -345,17 +356,6 @@ namespace Math
                         return ReadOperator();
                     }
                 }*/
-				else if (ch == '.' && !hadDot)
-				{
-					hadDot = true;
-                    
-                    if (!char.IsDigit(cz))
-                    {
-                        data.Insert(pos, "0");
-                    }
-
-					Consume();
-				}
                 else
                     break;
 			}
