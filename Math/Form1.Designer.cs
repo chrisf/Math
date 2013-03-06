@@ -72,7 +72,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(439, 302);
             this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "1 + 2 = 3 * 5 = 15 ^ 2 = 225\npi = 3.14159265358979";
+            this.richTextBox1.Text = "";
             this.richTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBox1_KeyPress);
             // 
             // label2
@@ -83,6 +83,7 @@
             this.label2.Size = new System.Drawing.Size(340, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Type an expression in the space below, followed by an = to calculate it";
+            this.label2.Visible = false;
             // 
             // button2
             // 

@@ -24,6 +24,10 @@ namespace Math
                 {
                     return System.Math.Pow(args[0], args[1]);
                 }),
+                new Operator('%', 3, Operator.Associativity.Left, (args) =>
+                {
+                    return args[0] % args[1];
+                }),
                 new Operator('*', 3, Operator.Associativity.Left, (args) =>
                 {
                     return args[0] * args[1];
@@ -92,6 +96,10 @@ namespace Math
                 {
                     return System.Math.Ceiling(args[0]);
                 }),
+                new Function("jeff", 0, (args) =>
+                    {
+                        return 6969;
+                    }),
                 new Function("floor", 1, (args) =>
                 {
                     return System.Math.Floor(args[0]);
