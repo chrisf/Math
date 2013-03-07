@@ -323,7 +323,10 @@ namespace Math
                     if (prevToken == null || prevToken.Kind != TokenKind.Number && prevToken.Kind != TokenKind.RightParentheses || ch == EOF)
                     {
                         // this must be a negative sign, not subtraction
-                        if (ch == '(')
+
+                        // if current char is ( and previous char is not a number
+                        // it must be a negative sign
+                        if (ch == '(' && !Char.IsDigit(LA(-1)))
                         {
                             data = data.Insert(pos, "1");
                             Consume();
