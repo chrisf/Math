@@ -24,7 +24,7 @@ namespace Math
         public Form1()
         {
             InitializeComponent();
-            calc = new Calculator();
+            calc = new Calculator(Calculator.CalculatorMode.Radians);
         }
         
         private void button1_Click(object sender, EventArgs e)

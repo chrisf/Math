@@ -14,7 +14,7 @@ namespace MathConsole
         {
             string expression = args[0];
 
-            Calculator calc = new Calculator();
+            Calculator calc = new Calculator(Calculator.CalculatorMode.Radians);
             double answer = calc.Solve(expression);
             Console.Out.WriteLine(answer);
         }

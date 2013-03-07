@@ -323,9 +323,16 @@ namespace Math
                     if (prevToken == null || prevToken.Kind != TokenKind.Number && prevToken.Kind != TokenKind.RightParentheses || ch == EOF)
                     {
                         // this must be a negative sign, not subtraction
-                        if (ch == EOF || !char.IsDigit(ch))
-                            break;;
-                        Consume();
+                        if (ch == '(')
+                        {
+                            data = data.Insert(pos, "1");
+                            Consume();
+                            break;
+                        }
+                        else if (ch == EOF || !char.IsDigit(ch))
+                            break;
+                        else
+                            Consume();
                     }
                     else
                     {

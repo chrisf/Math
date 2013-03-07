@@ -15,9 +15,18 @@ namespace Math
         Stack<Token> ops;
         Queue output;
         StringTokenizer tokenizer;
+        CalculatorMode mode;
 
-        public Calculator()
+        public enum CalculatorMode
         {
+            Degrees,
+            Radians
+        }
+
+        public Calculator(CalculatorMode mode)
+        {
+            this.mode = mode;
+
             operators = new Operator[]
             {
                 new Operator('^', 4, Operator.Associativity.Right, (args) => 
@@ -55,6 +64,33 @@ namespace Math
                 new Function("pi", 0, (args) =>
                 {
                     return System.Math.PI;
+                }),
+                // the inverse trig are checked first, 
+                // otherwise cos^-1 is found as (function)cos (operator)& (number)-1
+                // when (function)cos^-1 is expected
+                new Function("cos^-1", 1, (args) =>
+                {
+                    return System.Math.Acos(args[0]);
+                }),
+                new Function("sin^-1", 1, (args) =>
+                {
+                    return System.Math.Asin(args[0]);
+                }),
+                new Function("tan^-1", 1, (args) =>
+                {
+                    return System.Math.Atan(args[0]);
+                }),
+                new Function("cot^-1", 1, (args) =>
+                {
+                    return 1 / System.Math.Atan(args[0]);
+                }),
+                new Function("sec^-1", 1, (args) =>
+                {
+                    return 1 / System.Math.Acos(args[0]);
+                }),
+                new Function("csc^-1", 1, (args) =>
+                {
+                    return 1 / System.Math.Asin(args[0]);
                 }),
                 new Function("cos", 1, (args) =>
                 {
@@ -117,6 +153,11 @@ namespace Math
                     return 9;
                 })*/
             };
+        }
+
+        public void SetMode(CalculatorMode mode)
+        {
+            this.mode = mode;
         }
 
         private double DegreeToRadian(double angle)
@@ -185,7 +226,7 @@ namespace Math
                 }
                 else if (token.Kind == TokenKind.LeftParentheses)
                 {
-                    if (prevToken != null && prevToken.Kind != TokenKind.Operator)
+                    if (prevToken != null && prevToken.Kind != TokenKind.Operator && prevToken.Kind != TokenKind.Function)
                         evalOperator(new Token(TokenKind.Operator, operators[2], 0, 0));
                     ops.Push(new Token(TokenKind.LeftParentheses, new Operator('(', 0, Operator.Associativity.None), 0, 0));
                     //ops.Push(new Operator('(', 0, Operator.Associativity.None));

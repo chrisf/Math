@@ -64,7 +64,7 @@ namespace Math.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            Calculator calc = new Calculator();
+            Calculator calc = new Calculator(Calculator.CalculatorMode.Radians);
 
             double pi = 3.14159265358979;
 
@@ -84,6 +84,12 @@ namespace Math.Tests
             Assert.AreEqual(System.Math.Pow(2, -8), calc.Solve("2^(-8)"));
             // off by 2 decimals.
             //Assert.AreEqual(System.Math.Round(System.Math.Pow(2, 2.0/5.0), calc.Solve("2^(2/5)")));
+
+            // Test parenthesis
+            Assert.AreEqual(16, calc.Solve("2(8)"));
+            Assert.AreEqual(-16, calc.Solve("-2(8)"));
+            Assert.AreEqual(-16, calc.Solve("2(-8)"));
+            Assert.AreEqual(-8, calc.Solve("-(8)"));
 
             // Constants
             Assert.AreEqual(pi, calc.Solve("pi"));
