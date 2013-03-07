@@ -149,6 +149,7 @@ namespace Math
         private void InfixToRPN()
         {
             Token token = tokenizer.Next();
+            Token prevToken = null;
 
             while (token.Kind != TokenKind.EOF)
             {
@@ -180,22 +181,12 @@ namespace Math
                 }
                 else if (token.Kind == TokenKind.Operator)
                 {
-                    Operator op = (Operator)token.Value;
-                    while (ops.Count > 0
-                        && (
-                            (op.assoc == Operator.Associativity.Left && op.precedence <= ((Operator)ops.Peek().Value).precedence)
-                            ||
-                            (op.assoc == Operator.Associativity.Right && op.precedence < ((Operator)ops.Peek().Value).precedence)
-                        )
-                    )
-                    {
-                        output.Enqueue(ops.Pop());
-                    }
-
-                    ops.Push(token);
+                    evalOperator(token);
                 }
                 else if (token.Kind == TokenKind.LeftParentheses)
                 {
+                    if (prevToken != null && prevToken.Kind != TokenKind.Operator)
+                        evalOperator(new Token(TokenKind.Operator, operators[2], 0, 0));
                     ops.Push(new Token(TokenKind.LeftParentheses, new Operator('(', 0, Operator.Associativity.None), 0, 0));
                     //ops.Push(new Operator('(', 0, Operator.Associativity.None));
                 }
@@ -216,6 +207,7 @@ namespace Math
                     } while (op.Kind != TokenKind.LeftParentheses);
                 }
 
+                prevToken = token;
                 token = tokenizer.Next();
             }
 
@@ -234,6 +226,23 @@ namespace Math
                     output.Enqueue(ops.Pop());
                 }
             }
+        }
+
+        void evalOperator(Token token)
+        {
+            Operator op = (Operator)token.Value;
+            while (ops.Count > 0
+                && (
+                    (op.assoc == Operator.Associativity.Left && op.precedence <= ((Operator)ops.Peek().Value).precedence)
+                    ||
+                    (op.assoc == Operator.Associativity.Right && op.precedence < ((Operator)ops.Peek().Value).precedence)
+                )
+            )
+            {
+                output.Enqueue(ops.Pop());
+            }
+
+            ops.Push(token);
         }
 
         private double EvaluateRPN()
