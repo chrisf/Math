@@ -101,5 +101,11 @@ namespace Math.Tests
             // Combination of the above
             //Assert.AreEqual(
         }
+
+        [TestMethod]
+        public void TestSimplify()
+        {
+
+        }
     }
 }

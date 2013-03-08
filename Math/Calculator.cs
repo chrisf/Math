@@ -65,6 +65,10 @@ namespace Math
                 {
                     return System.Math.PI;
                 }),
+                new Function("e", 0, (args) =>
+                {
+                    return System.Math.E;
+                }),
                 // the inverse trig are checked first, 
                 // otherwise cos^-1 is found as (function)cos (operator)& (number)-1
                 // when (function)cos^-1 is expected

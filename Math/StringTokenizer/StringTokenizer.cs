@@ -326,7 +326,7 @@ namespace Math
 
                         // if current char is ( and previous char is not a number
                         // it must be a negative sign
-                        if (ch == '(' && !Char.IsDigit(LA(-1)))
+                        if (ch == '(' && !Char.IsDigit(LA(-1))/* || char.IsLetter(ch)*/)
                         {
                             data = data.Insert(pos, "1");
                             Consume();
